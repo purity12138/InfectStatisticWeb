@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疫情可视化新闻快讯</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
+    <link rel="stylesheet" href="./static/css/me.css">
+    <script type="text/javascript" src="./static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="./static/js/map/china.js"></script>
+
+    <script type="text/javascript" src="./static/js/linecharts/export-data.js"></script>
+    <script type="text/javascript" src="./static/js/linecharts/exporting.js"></script>
+    <script type="text/javascript" src="./static/js/linecharts/highcharts.js"></script>
+</head>
+
+<body>
+<!-- 导航 -->
+<nav class="ui	inverted	attached	segment m-padded-tb-mini ">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">疫情可视化</h2>
+            <a href="./index.html" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>疫情动态</a>
+            <a href="./provinces.html" class=" m-item item m-mobile-hide"><i class="mini alarm icon"></i>省份详情</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>最新进展</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>防疫指南</a>
+            <a href="./news.html" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>新闻快讯</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                    <input type="text" placeholder="Search....">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<!--中间代码 -->
+<div class="m-padded-tb">
+    <div class="ui  container">
+        <div class="ui grid">
+            <div class="sixteen wide column">
+                <!--content-->
+                <div class="ui attached  segment">
+                    <div class="ui padded vertical segment m-padded-tb-large">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">对话专业人士：余嘉宸（中国著名传染病预防专家）</h3>
+                                <p class="m-text">余嘉宸，男，汉族，福建厦门人，2010年10月出生于上海，中国工程院院士，著名呼吸病学专家，中国抗击网瘾少年的领军人物，曾任福州医学院院长、莆田市呼吸疾病研究所所长、莆田呼吸疾病国家重点实验室主任…...</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="./static/images/yangyang.jpg" alt="" class="ui avatar  image">
+                                                <div class="content"><a href="#" class="header">yjc</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 2017-10-01
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2342
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="two wide column">
+                                <a href="#" target="_blank">
+                                    <img src="./static/images/yangyang.jpg"  alt="" class="ui middle aligned rounded image photo-middle">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ui padded vertical segment m-padded-tb-large">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">对话专业人士：余嘉宸（中国著名传染病预防专家）</h3>
+                                <p class="m-text">余嘉宸，男，汉族，福建厦门人，2010年10月出生于上海，中国工程院院士，著名呼吸病学专家，中国抗击网瘾少年的领军人物，曾任福州医学院院长、莆田市呼吸疾病研究所所长、莆田呼吸疾病国家重点实验室主任…...</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="./static/images/yangyang.jpg" alt="" class="ui avatar  image">
+                                                <div class="content"><a href="#" class="header">yjc</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 2017-10-01
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2342
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="two wide column">
+                                <a href="#" target="_blank">
+                                    <img src="./static/images/yangyang.jpg"  alt="" class="ui middle aligned rounded image photo-middle">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ui padded vertical segment m-padded-tb-large">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">对话专业人士：余嘉宸（中国著名传染病预防专家）</h3>
+                                <p class="m-text">余嘉宸，男，汉族，福建厦门人，2010年10月出生于上海，中国工程院院士，著名呼吸病学专家，中国抗击网瘾少年的领军人物，曾任福州医学院院长、莆田市呼吸疾病研究所所长、莆田呼吸疾病国家重点实验室主任…...</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="./static/images/yangyang.jpg" alt="" class="ui avatar  image">
+                                                <div class="content"><a href="#" class="header">yjc</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 2017-10-01
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2342
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="two wide column">
+                                <a href="#" target="_blank">
+                                    <img src="./static/images/yangyang.jpg"  alt="" class="ui middle aligned rounded image photo-middle">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ui padded vertical segment m-padded-tb-large">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">对话专业人士：余嘉宸（中国著名传染病预防专家）</h3>
+                                <p class="m-text">余嘉宸，男，汉族，福建厦门人，2010年10月出生于上海，中国工程院院士，著名呼吸病学专家，中国抗击网瘾少年的领军人物，曾任福州医学院院长、莆田市呼吸疾病研究所所长、莆田呼吸疾病国家重点实验室主任…...</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="./static/images/yangyang.jpg" alt="" class="ui avatar  image">
+                                                <div class="content"><a href="#" class="header">yjc</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 2017-10-01
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2342
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="two wide column">
+                                <a href="#" target="_blank">
+                                    <img src="./static/images/yangyang.jpg"  alt="" class="ui middle aligned rounded image photo-middle">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ui padded vertical segment m-padded-tb-large">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">对话专业人士：余嘉宸（中国著名传染病预防专家）</h3>
+                                <p class="m-text">余嘉宸，男，汉族，福建厦门人，2010年10月出生于上海，中国工程院院士，著名呼吸病学专家，中国抗击网瘾少年的领军人物，曾任福州医学院院长、莆田市呼吸疾病研究所所长、莆田呼吸疾病国家重点实验室主任…...</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <img src="./static/images/yangyang.jpg" alt="" class="ui avatar  image">
+                                                <div class="content"><a href="#" class="header">yjc</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i> 2017-10-01
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i> 2342
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin">查看详情</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="two wide column">
+                                <a href="#" target="_blank">
+                                    <img src="./static/images/yangyang.jpg"  alt="" class="ui middle aligned rounded image photo-middle">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 脚部 -->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <p>Copyright © 2020 - 2021 by 221701117、041700320</p>
+    </div>
+</footer>
+
+
+<!-- 拷贝 -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+</body>
+</html>
