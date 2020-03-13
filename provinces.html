@@ -1,4 +1,5 @@
 <!doctype html>
+<html lang="en">
 <html>
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="utf-8">
@@ -6,12 +7,25 @@
     <title>疫情可视化省份详情</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
     <link rel="stylesheet" href="./static/css/me.css">
-    <script type="text/javascript" src="./static/js/echarts.min.js"></script>
-    <script type="text/javascript" src="./static/js/map/china.js"></script>
+
 
     <script type="text/javascript" src="./static/js/linecharts/export-data.js"></script>
     <script type="text/javascript" src="./static/js/linecharts/exporting.js"></script>
     <script type="text/javascript" src="./static/js/linecharts/highcharts.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+    <script type="text/javascript" src="./static/js/Date.prototype.js"></script>
+    <script type="text/javascript" src="./static/js/layer.js"></script>
+
+
+
+
 </head>
 
 <body>
@@ -21,7 +35,7 @@
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">疫情可视化</h2>
             <a href="./index.html" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>疫情动态</a>
-            <a href="./provinces.html" class=" m-item item m-mobile-hide"><i class="mini alarm icon"></i>省份详情</a>
+            <a href="provinces.html" class=" m-item item m-mobile-hide"><i class="mini alarm icon"></i>省份详情</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>最新进展</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>防疫指南</a>
             <a href="./news.html" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>新闻快讯</a>
@@ -37,12 +51,71 @@
 </nav>
 <!--中间代码 -->
 <div class="m-padded-tb">
+
     <div class="ui  container">
         <div class="ui grid">
+            <!--
+            <ul class="statistics">
+                <li>
+                    <strong style="color: #f74c31;" dataContent="">0</strong>
+                    <span dataContent="">现有确诊</span>
+                </li>
+                <li>
+                    <strong style="color:#a25a4e;" dataContent="">0</strong>
+                    <span dataContent="">现有重症</span>
+                </li>
+                <li>
+                    <strong style="color: #f78207;" dataContent="">0</strong>
+                    <span dataContent="">现有疑似</span>
+                </li>
+                <li>
+                    <strong style="color: #ae212c;" dataContent="">0</strong>
+                    <span dataContent="">累计确诊</span>
+                </li>
+
+                <li>
+                    <strong style="color: #5d7092;" dataContent="">0</strong>
+                    <span dataContent="">累计死亡</span>
+                </li>
+                <li>
+                    <strong style="color: #28b7a3;" dataContent="">0</strong>
+                    <span dataContent="">累计治愈</span>
+                </li>
+
+            </ul>
+            -->
             <div class="sixteen wide column">
                 <!--总量-->
-                <div class="ui top attached segment m-padded-tb-small">
-                    <div class="ui center aligned four column grid">
+                <div class="ui top attached segment m-padded-tb-big">
+                    <ul class="ui center aligned six column grid statistics">
+                        <li class="column">
+                            <strong class="ui header" style="color: #f74c31;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">现有确诊</span>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color:#a25a4e;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">现有重症</span>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color: #f78207;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">现有疑似</span>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color: #ae212c;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">累计确诊</span>
+                        </li>
+
+                        <li class="column">
+                            <strong class="ui header" style="color: #5d7092;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">累计死亡</span>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color: #28b7a3;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">累计治愈</span>
+                        </li>
+                    </ul>
+                    <!--
+                    <div class="ui center aligned four column grid" >
                         <div class="column">
                             <h3 class="ui teal header">现有确诊</h3>
                         </div>
@@ -84,22 +157,45 @@
                             较昨日<h5 class="ui teal header"></h5>
                         </div>
                     </div>
+                    -->
                 </div>
+                <div id="main"></div>
+                <script type="text/javascript" src="./static/js/data.js"></script>
                 <!--地图-->
                 <div class="ui attached segment">
+                    <script type="text/javascript" src="./static/js/echarts.min.js"></script>
+                    <script type="text/javascript" src="./static/js/map/china.js"></script>
                     <a id="back"></a>
-                    <div id="china-map"><script type="text/javascript" src="./static/js/map/wuhan.js"></script></div>
-                    <script type="text/javascript" src="./static/js/map/wuhan.js"></script>
+                    <div id="china-map"></div>
+                    <script type="text/javascript" src="./static/js/map/hubei.js"></script>
                 </div>
+
+
+                <script type="text/javascript" src="./static/js/jquery2.0.min.js"></script>
+                <script type="text/javascript" src="./static/js/common.js"></script>
+                <!--增长趋势图-->
+
+                <div class="chart" id="trend-chart" style="height: 25rem">
+
+                </div>
+                <hr/>
+                <!--增长量-->
+
+                <div class="chart" id="add-chart" style="height: 25rem">
+
+                </div>
+
 
                 <!--折线图-->
                 <div class="ui bottom attached segment">
+
                     <div class="lineChart-size">
                         <div class="lineChart-display"></div>
                         <div id="container">
-                            <script type="text/javascript" src="static/js/linecharts/corenovirus_linechart.js"></script>
+                        <script type="text/javascript" src="static/js/linecharts/corenovirus_linechart.js"></script>
                         </div>
                     </div>
+
                     <div class="ui center aligned four column grid">
                         <div class="column">
                             <a href="#" class="ui teal basic button">确诊</a>
@@ -115,6 +211,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -128,11 +225,16 @@
     </div>
 </footer>
 
-
 <!-- 拷贝 -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<!--
+<script type="text/javascript" src="./static/js/zui.js"></script>
+<script type="text/javascript" src="./static/js/chosen.min.js"></script>
+<script type="text/javascript" src="./static/js/echarts4.min.js"></script>
+-->
+<script type="text/javascript" src="./static/js/map/linechart.js"></script>
 </body>
 </html>

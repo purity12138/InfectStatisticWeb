@@ -1,11 +1,11 @@
-const myChart = echarts.init(document.getElementById('china-map'));
-const oBack = document.getElementById("back");
+var myChart = echarts.init(document.getElementById('china-map'));
+var oBack = document.getElementById("back");
 
-const provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
+var provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
 
-const provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
+var provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
 
-const seriesData = [{
+var seriesData = [{
     name: '北京',
     value: 100
 }, {
@@ -110,17 +110,18 @@ const seriesData = [{
 }];
 
 oBack.onclick = function () {
-    //initEcharts("china", "中国");
+    //initEcharts("hubei", "湖北");
     showProvince("hubei","湖北");
 };
 
 //initEcharts("china", "中国");
 showProvince("hubei","湖北");
+
 // 初始化echarts
 function initEcharts(pName, Chinese_) {
-    const tmpSeriesData = pName === "china" ? seriesData : [];
+    var tmpSeriesData = pName === "china" ? seriesData : [];
 
-    const option = {
+    var option = {
         title: {
             text: Chinese_ || pName,
             left: 'center'
@@ -141,7 +142,7 @@ function initEcharts(pName, Chinese_) {
                         }
                     },
                     emphasis: {//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
-                        label: {show: true}
+                        label: { show: true }
                     }
                 },
                 data: tmpSeriesData,
@@ -158,7 +159,7 @@ function initEcharts(pName, Chinese_) {
         myChart.on('click', function (param) {
             console.log(param.name);
             //遍历取到provincesText 中的下标  去拿到对应的省js
-            for (let i = 0; i < provincesText.length; i++) {
+            for (var i = 0; i < provincesText.length; i++) {
                 if (param.name === provincesText[i]) {
                     //显示对应省份的方法
                     showProvince(provinces[i], provincesText[i]);
@@ -183,7 +184,7 @@ function showProvince(pName, Chinese_) {
 
 // 加载对应的JS
 function loadBdScript(scriptId, url, callback) {
-    const script = document.createElement("script");
+    var script = document.createElement("script");
     script.type = "text/javascript";
     if (script.readyState) {  //IE
         script.onreadystatechange = function () {
