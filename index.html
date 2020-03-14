@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body>
+
+    <div class="layui-main" id="laotang" style="width: 800px; height:600px;"></div>
+
+    <div class="layui-main layui-nav">
+        <div class="layui-row" style="height: 30px; line-height: 30px;">
+            <div class="layui-col-md4">地区</div>
+            <div class="layui-col-md2">累计确诊</div>
+            <div class="layui-col-md2">最新确诊</div>
+            <div class="layui-col-md2">治愈</div>
+            <div class="layui-col-md2">死亡</div>
+        </div>
+    </div>
+
+    <div class="layui-main">
+        <div id="view" class="layui-collapse" lay-accordion>
+            <div class="layui-colla-item layui-row">
+                <h2 class="layui-colla-title">
+                    <span class="layui-col-md4">湖北</span>
+                    <span class="layui-col-md2">62032</span>
+                    <span class="layui-col-md2">40111</span>
+                    <span class="layui-col-md2">20000</span>
+                    <span class="layui-col-md2">2000</span>
+                </h2>
+                <div class="layui-colla-content">
+                    <table class="layui-table" lay-skin="nob">
+                        <colgroup>
+                            <col width="370">
+                            <col width="180">
+                            <col width="180">
+                            <col width="180">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>武汉</td>
+                                <td>33333</td>
+                                <td>33333</td>
+                                <td>33333</td>
+                                <td>33333</td>
+                            </tr>
+                            <tr>
+                                <td>孝感</td>
+                                <td>2222</td>
+                                <td>222</td>
+                                <td>2222</td>
+                                <td>222</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="layui/layui.js"></script>
+    <script src="./js/data.js"></script>
+
+    <script id="demo" type="text/html">
+        {{#  layui.each(d.newslist, function(index, item){ }}
+        <div class="layui-colla-item layui-row">
+            <h2 class="layui-colla-title">
+                <span class="layui-col-md4">{{ item.provinceName }}</span>
+                <span class="layui-col-md2">{{item.confirmedCount}}</span>
+                <span class="layui-col-md2">{{item.currentConfirmedCount}}</span>
+                <span class="layui-col-md2">{{item.curedCount}}</span>
+                <span class="layui-col-md2">{{item.deadCount}}</span>
+            </h2>
+            <div class="layui-colla-content">
+                <table class="layui-table" lay-skin="nob">
+                    <colgroup>
+                        <col width="370">
+                        <col width="180">
+                        <col width="180">
+                        <col width="180">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                        {{# layui.each(item.cities, function (i, e) {}}
+                        <tr>
+                            <td>{{e.cityName}}</td>
+                            <td>{{e.confirmedCount}}</td>
+                            <td>{{e.currentConfirmedCount}}</td>
+                            <td>{{e.curedCount}}</td>
+                            <td>{{e.deadCount}}</td>
+                        </tr>
+                        {{# }); }}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#  }); }}
+    </script>
+
+    <script>
+        layui.use('laytpl', function () {
+            var laytpl = layui.laytpl;
+
+            var getTpl = demo.innerHTML
+                , view = document.getElementById('view');
+            laytpl(getTpl).render(data, function (html) {
+                view.innerHTML = html;
+            });
+        });
+    </script>
+
+    <script>
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+
+
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/china.js"></script>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script>
+        // 获取真实的数据
+
+        $.get("http://api.tianapi.com/txapi/ncovcity/index?key=5d4fb67d8bd16c1fd371311e334a4bd0",
+            function (data, status) {              
+                var arr = [];
+                data.newslist.forEach(item => {
+                    arr.push({
+                        name: item.provinceShortName, 
+                        value: item.confirmedCount, 
+                        zuixin: item.currentConfirmedCount, 
+                        zhiyu: item.curedCount,
+                        siwang: item.deadCount
+                    });
+                });
+               
+                arr.push({
+                    name: '南海诸岛',
+                    value: '未统计', 
+                    zuixin: '未统计', 
+                    zhiyu: '未统计',
+                    siwang: '未统计'
+                });
+                console.log(arr);
+
+
+                var myChart = echarts.init(document.getElementById('laotang'));
+
+
+                var option = {              
+                    title: {
+                        text: '疫情可视化',
+                        textStyle: {
+                            fontSize: 28
+                        },
+                        left: 'center', 
+                        
+                        subtextStyle: {
+                            fontSize: 14
+                        }
+                    },
+                    series: [{
+                        type: 'map',
+                        map: 'china', 
+                        data: arr, 
+                        label: { 
+                            show: true
+                        }
+                    }],
+                    tooltip: { 
+                        formatter: function (params) { 
+                            console.log(params);
+                            return `累计确诊：${params.data.value}<br/>
+                            当前确诊：${params.data.zuixin}<br/>
+                            治愈：${params.data.zhiyu}<br/>
+                            死亡：${params.data.siwang}<br/>
+                            `;
+                        }
+                    },
+                    visualMap: {
+                        type: 'piecewise',
+                        pieces: [
+                            { gt: 10000 }, 
+                            { gt: 5000, lte: 10000 },
+                            { gt: 1000, lte: 5000 },
+                            { gt: 500, lte: 1000 },  
+                            { gt: 100, lte: 500 },  
+                            { gt: 10, lte: 100 }, 
+                            { gt: 0, lte: 10 },  
+                        ],
+                        inRange: {
+                            color: ['#ffcfc3', '#eda595', '#d27b64', '#d5462a', '#a8352e', '#6a211d', '#562a2a']
+                        }
+                    }
+                };
+
+                myChart.setOption(option);
+            });
+
+    </script>
+</body>
+
+</html>
