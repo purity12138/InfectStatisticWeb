@@ -1,15 +1,241 @@
+var for20200215_confirmed = 0,for20200215_died = 0,for20200215_cured = 0,for20200215_current_confirmed = 0,
+    for20200304_confirmed = 0,for20200304_died = 0,for20200304_cured = 0,for20200304_current_confirmed = 0,
+    for20200305_confirmed = 0,for20200305_died = 0,for20200305_cured = 0,for20200305_current_confirmed = 0,
+    for20200306_confirmed = 0,for20200306_died = 0,for20200306_cured = 0,for20200306_current_confirmed = 0,
+    for20200307_confirmed = 0,for20200307_died = 0,for20200307_cured = 0,for20200307_current_confirmed = 0,
+    for20200308_confirmed = 0,for20200308_died = 0,for20200308_cured = 0,for20200308_current_confirmed = 0,
+    for20200309_confirmed = 0,for20200309_died = 0,for20200309_cured = 0,for20200309_current_confirmed = 0,
+    for20200310_confirmed = 0,for20200310_died = 0,for20200310_cured = 0,for20200310_current_confirmed = 0,
+    for20200311_confirmed = 0,for20200311_died = 0,for20200311_cured = 0,for20200311_current_confirmed = 0,
+    for20200312_confirmed = 0,for20200312_died = 0,for20200312_cured = 0,for20200312_current_confirmed = 0,
+    for20200313_confirmed = 0,for20200313_died = 0,for20200313_cured = 0,for20200313_current_confirmed = 0,
+    for20200314_confirmed = 0,for20200314_died = 0,for20200314_cured = 0,for20200314_current_confirmed = 0
+;
+//原来是这样
+$.ajaxSettings.async = false;
+$.getJSON("./static/js/data.json?" + Date.parse(new Date()), function (data) {
+    dataSource = data;
+    option.legend.selected['累计确诊'] = false;
+    option.legend.selected['累计确诊+现有疑似'] = false;
+    option.legend.selected['观察中'] = false;
+    option.legend.selected['死亡/确诊'] = false;
+    option.dataset.source = dataSource;
+    var yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,3)).Format("yyyy/M/d")
+    );
+    //alert("111");
+    //alert((new Date().setFullYear(2020,2,7)).Format("yyyy/M/d"));
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200215_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200215_confirmed = ~~yesterday_data[0]["累计确诊"];
+        //alert(for20200215_current_confirmed);
+        for20200215_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200215_died = ~~yesterday_data[0]["累计死亡"];
+        //yesterday_current_serious = ~~yesterday_data[0]["现有重症"];
+        //yesterday_current_unconfirmed = ~~yesterday_data[0]["现有疑似"];
+
+    }
+    //0304
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,4)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200304_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200304_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200304_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200304_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0305
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,5)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200305_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200305_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200305_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200305_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0306
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,6)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200306_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200306_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200306_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200306_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0307
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,7)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200307_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200307_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200307_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200307_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0308
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,8)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200308_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200308_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200308_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200308_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0309
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,9)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200309_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200309_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200309_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200309_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0310
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,10)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200310_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200310_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200310_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200310_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0311
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,11)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200311_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200311_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200311_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200311_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0312
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,12)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200312_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200312_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200312_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200312_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0313
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,13)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200313_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200313_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200313_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200313_died = ~~yesterday_data[0]["累计死亡"];
+    }
+    //0314
+    yesterday_data = data.filter(item =>
+        //(new Date(item.日期)).Format("yyyy/M/d") == (new Date()).DateAdd("d", -1).Format("yyyy/M/d")
+        (new Date(item.日期)).Format("yyyy/M/d") == (new Date(2020,2,14)).Format("yyyy/M/d")
+    );
+    console.log(yesterday_data);
+    if (yesterday_data.length > 0) {
+        for20200314_current_confirmed = ~~yesterday_data[0]["现有确诊（含重症）"];
+        for20200314_confirmed = ~~yesterday_data[0]["累计确诊"];
+        for20200314_cured = ~~yesterday_data[0]["累计治愈"];
+        for20200314_died = ~~yesterday_data[0]["累计死亡"];
+    }
+})
+//alert(for20200215_current_confirmed);
+function getUrlParameter(name){
+    name = name.replace(/[]/,"\[").replace(/[]/,"\[").replace(/[]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec(window.parent.location.href );
+    if( results == null ) return ""; else {
+        return results[1];
+    }
+};
+var conferid =getUrlParameter('tag');
+    if(conferid == '0303')
+    {
+        mydata = [
+            {name: '北京', value: beijing_0303_confirmed}, {name: '天津', value: tianjin_0303_confirmed},
+            {name: '上海', value: shanghai_0303_confirmed}, {name: '重庆', value: chongqing_0303_confirmed},
+            {name: '河北', value: hebei_0303_confirmed}, {name: '河南', value: henan_0303_confirmed},
+            {name: '云南', value: yunan_0303_confirmed}, {name: '辽宁', value: liaoning_0303_confirmed},
+            {name: '黑龙江', value: heilongjiang_0303_confirmed}, {name: '湖南', value: hunan_0303_confirmed},
+            {name: '安徽', value: anhui_0303_confirmed}, {name: '山东', value: shandong_0303_confirmed},
+            {name: '新疆', value: 0}, {name: '江苏', value: jiangsu_0303_confirmed},
+            {name: '浙江', value: zhejiang_0303_confirmed}, {name: '江西', value:jiangxi_0303_confirmed},
+            {name: '湖北', value: hubei_0303_confirmed}, {name: '广西', value: guangxi_0303_confirmed},
+            {name: '甘肃', value: gansu_0303_confirmed}, {name: '山西', value: shanxi_0303_confirmed},
+            {name: '内蒙古', value: neimenggu_0303_confirmed}, {name: '陕西', value: shanxi2_0303_confirmed},
+            {name: '吉林', value: jilin_0303_confirmed}, {name: '福建', value: fujian_0303_confirmed},
+            {name: '贵州', value: guizhou_0303_confirmed}, {name: '广东', value: guangdong_0303_confirmed},
+            {name: '青海', value: qinghai_0303_confirmed}, {name: '西藏', value: xizang_0303_confirmed},
+            {name: '四川', value: sichuan_0303_confirmed}, {name: '宁夏', value: ningxia_0303_confirmed},
+            {name: '海南', value: hainan_0303_confirmed}, {name: '台湾', value: randomData()},
+            {name: '香港', value: randomData()}, {name: '澳门', value: aomeng_0303_confirmed}
+        ];
+        myChart = echarts.init(document.getElementById('map_china'));
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(optionMap);
+        //alert("c");
+        $(".a1").val(for20200215_current_confirmed);
+        $(".a2").val(for20200215_confirmed);
+        $(".a3").val(for20200215_cured);
+        $(".a4").val(for20200215_died);
+        //document.getElementById('a1').textContent = for20200215_current_confirmed;
+        //document.getElementById('a2').textContent = for20200215_confirmed;
+        //document.getElementById('a3').textContent = for20200215_cured;
+        //document.getElementById('a4').textContent = for20200215_died;
+    }
+    if(conferid == '0304')
+    {
+        //alert("c");
+        $(".a1").val(for20200304_current_confirmed);
+        $(".a2").val(for20200304_confirmed);
+        $(".a3").val(for20200304_cured);
+        $(".a4").val(for20200304_died);
+    }
+{
 Highcharts.chart('container', {
     chart: {
         type: 'line'
     },
     title: {
-        text: '全国确诊趋势折线图'
+        text: '全国疫情趋势折线图'
     },
     subtitle: {
         text: '来自:国家统计局 '
     },
     xAxis: {
-        categories: ['02.15', '02.16', '02.17', '02.18', '02.19', '02.20', '02.21', '02.22', '02.23', '02.24', '02.25', '02.26']
+        categories: ['03.03', '03.04', '03.05', '03.06', '03.07', '03.08', '03.09', '03.10', '03.11', '03.12', '03.13']
     },
     yAxis: {
         title: {
@@ -24,10 +250,31 @@ Highcharts.chart('container', {
             enableMouseTracking: false
         }
     },
-    series: [{
-        name: '全国',
-        data: [10001, 11421, 13568, 14582, 16582, 18542, 20351, 21541,22457, 26854, 27854, 28651]
-    }
+    series: [
+        {
+            name: '现有确诊',
+            data: [for20200215_current_confirmed, for20200304_current_confirmed, for20200305_current_confirmed, for20200306_current_confirmed,
+                for20200307_current_confirmed, for20200308_current_confirmed, for20200309_current_confirmed, for20200310_current_confirmed,
+                for20200311_current_confirmed, for20200312_current_confirmed, for20200313_current_confirmed]
+        },
+        {
+            name: '累计确诊',
+            data: [for20200215_confirmed, for20200304_confirmed, for20200305_confirmed, for20200306_confirmed,
+                for20200307_confirmed, for20200308_confirmed, for20200309_confirmed, for20200310_confirmed,
+                for20200311_confirmed, for20200312_confirmed, for20200313_confirmed]
+        },
+        {
+            name: '累计治愈',
+            data: [for20200215_cured, for20200304_cured, for20200305_cured, for20200306_cured,
+                for20200307_cured, for20200308_cured, for20200309_cured, for20200310_cured,
+                for20200311_cured, for20200312_cured, for20200313_cured]
+        },
+        {
+            name: '累计死亡',
+            data: [for20200215_died, for20200304_died, for20200305_died, for20200306_died,
+                for20200307_died, for20200308_died, for20200309_died, for20200310_died,
+                for20200311_died, for20200312_died, for20200313_died]
+        }
         /*
         , {
             name: 'London',
@@ -36,3 +283,4 @@ Highcharts.chart('container', {
         */
     ]
 });
+}

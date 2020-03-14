@@ -27,10 +27,13 @@
     height: 400px;
     margin: auto;
 }
+#map-china {
+    margin: auto;
+}
 .lineChart-size
 {
-    width: 500px;
-    height: 400px;
+    width: 1200px;
+    height: 500px;
     margin: auto;
 }
 .highChart-display

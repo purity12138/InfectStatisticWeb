@@ -134,9 +134,8 @@ option = {
 };
 
 $.ajaxSettings.async = false;
-$.getJSON("../Json/data.json?" + Date.parse(new Date()), function (data) {
+$.getJSON("./static/js/data.json?" + Date.parse(new Date()), function (data) {
     dataSource = data;
-
     option.legend.selected['累计确诊'] = false;
     option.legend.selected['累计确诊+现有疑似'] = false;
     option.legend.selected['观察中'] = false;
@@ -148,7 +147,9 @@ $.getJSON("../Json/data.json?" + Date.parse(new Date()), function (data) {
     );
     console.log(yesterday_data);
     if (yesterday_data.length > 0) {
+
         yesterday_confirmed = ~~yesterday_data[0]["累计确诊"];
+        //alert(yesterday_confirmed);
         yesterday_died = ~~yesterday_data[0]["累计死亡"];
         yesterday_cured = ~~yesterday_data[0]["累计治愈"];
 
@@ -211,22 +212,31 @@ function update() {// + "?" + Date.parse(new Date())
 
 
         freshDataNum($(".statistics>li>strong").eq(0), currentConfirmedCount || yesterday_current_confirmed);
+        /*
         freshDataNum($(".statistics>li>strong").eq(1), seriousCount || yesterday_current_serious);
+         */
+        /*
         freshDataNum($(".statistics>li>strong").eq(2), suspectedCount || yesterday_current_unconfirmed);
-
-        freshDataNum($(".statistics>li>strong").eq(3), confirmedCount || yesterday_confirmed);
-        freshDataNum($(".statistics>li>strong").eq(4), deadCount || yesterday_died);
-        freshDataNum($(".statistics>li>strong").eq(5), curedCount || yesterday_cured);
-
+        */
+        freshDataNum($(".statistics>li>strong").eq(1), confirmedCount || yesterday_confirmed);
+        freshDataNum($(".statistics>li>strong").eq(2), deadCount || yesterday_died);
+        freshDataNum($(".statistics>li>strong").eq(3), curedCount || yesterday_cured);
+        freshDataNum($(".statistics>li>div").eq(0), (currentConfirmedCount - yesterday_current_confirmed));
+        freshDataNum($(".statistics>li>div").eq(1), (confirmedCount - yesterday_confirmed));
+        freshDataNum($(".statistics>li>div").eq(2), (deadCount - yesterday_died));
+        freshDataNum($(".statistics>li>div").eq(3), (curedCount - yesterday_cured));
         freshbackgroud(currentConfirmedCount || yesterday_current_confirmed, confirmedCount || yesterday_confirmed);
 
-        updateIncrease($(".statistics>li>span").eq(0), currentConfirmedCount, yesterday_current_confirmed);
+        updateIncrease($(".statistics>li>div").eq(0), currentConfirmedCount, yesterday_current_confirmed);
+        /*
         updateIncrease($(".statistics>li>span").eq(1), seriousCount, yesterday_current_serious);
         updateIncrease($(".statistics>li>span").eq(2), suspectedCount, yesterday_current_unconfirmed);
+        */
+        updateIncrease($(".statistics>li>span").eq(1), confirmedCount, yesterday_confirmed);
+        updateIncrease($(".statistics>li>span").eq(2), deadCount, yesterday_died);
+        updateIncrease($(".statistics>li>span").eq(3), curedCount, yesterday_cured);
 
-        updateIncrease($(".statistics>li>span").eq(3), confirmedCount, yesterday_confirmed);
-        updateIncrease($(".statistics>li>span").eq(4), deadCount, yesterday_died);
-        updateIncrease($(".statistics>li>span").eq(5), curedCount, yesterday_cured);
+
 
         console.log(summaryDataIn);
 
@@ -247,7 +257,7 @@ function freshDataNum(target, newNum) {
         target.addClass('popshow');
     }
     else {
-        //target.attr('dataContent', '');
+        target.attr('dataContent', '');
     }
 
     target
@@ -256,6 +266,7 @@ function freshDataNum(target, newNum) {
 }
 
 function updateIncrease(target, newNum, oldNum) {
+    //alert("oldNum"+oldNum);
     if (newNum > 0 && oldNum > 0) {
         target.attr('dataContent', (newNum >= oldNum ? '+' : '') + (newNum - oldNum)
         );
@@ -288,21 +299,7 @@ function freshbackgroud(currentConfirmedCount, confirmedCount) {
 
 }
 
-var tipContent = ""
-    + "1、数据每10分钟自动刷新一次，如有更新会在数字右上角提示。<br>"
-    + "2、数字右下角为当前相对昨天24时官方数据的增（减）量。<br>"
-    + "3、(实时数据采集自网络，仅供参考！实际数据以官方为准！！)<br>";
-var tip_index = 0;
-$(".datasubtitle").bind("mouseenter",
-    function () {
-        var that = this;
-        tip_index = layer.tips(tipContent,
-            that,
-            {
-                tips: [1, 'rgba(10,140,15,0.9)'],
-                time: 0
-            });
-    }).bind("mouseleave", () => layer.close(tip_index))
+
 
 var docTipContent = "任务进度："
     + (progress * 100).toFixed(2)
