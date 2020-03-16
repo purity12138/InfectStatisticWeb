@@ -108,7 +108,7 @@ window.onload = function () {
                     {name: '海南', value: hainan_0303_confirmed}, {name: '台湾', value: randomData()},
                     {name: '香港', value: randomData()}, {name: '澳门', value: aomeng_0303_confirmed}
                 ];
-                alert("beijing_0303_confirmed"+beijing_0303_confirmed);
+                //alert("beijing_0303_confirmed"+beijing_0303_confirmed);
                 var optionMap = {
                     backgroundColor: '#FFFFFF',
                     title: {
@@ -165,13 +165,61 @@ window.onload = function () {
                 //document.getElementById('a3').textContent = for20200215_cured;
                 //document.getElementById('a4').textContent = for20200215_died;
             }
-            if(conferid == '0304')
+            else if(conferid == '0304')
             {
                 //alert("c");
                 $(".a1").val(for20200304_current_confirmed);
                 $(".a2").val(for20200304_confirmed);
                 $(".a3").val(for20200304_cured);
                 $(".a4").val(for20200304_died);
+            }
+            else{
+                var optionMap = {
+                    backgroundColor: '#FFFFFF',
+                    title: {
+                        text: '全国地图大数据',
+                        subtext: '',
+                        x:'center'
+                    },
+                    tooltip : {
+                        trigger: 'item'
+                    },
+
+                    //左侧小导航图标
+                    visualMap: {
+                        show : true,
+                        x: 'left',
+                        y: 'center',
+                        splitList: [
+                            {start: 10000, end:99999},{start: 1000, end: 9999},
+                            {start: 500, end: 999},{start: 100, end: 499},
+                            {start: 10, end: 99},{start: 0, end: 9},
+                        ],
+                        color: ['#660208', '#8C0D0D', '#CC2929','#FF7B69', '#FFAA85', '#F2F2F2']
+                    },
+
+                    //配置属性
+                    series: [{
+                        name: '数据',
+                        type: 'map',
+                        mapType: 'china',
+                        roam: true,
+                        label: {
+                            normal: {
+                                show: true  //省份名称
+                            },
+                            emphasis: {
+                                show: false
+                            }
+                        },
+                        data:mydata  //数据
+                    }]
+                };
+//初始化echarts实例
+                var myChart = echarts.init(document.getElementById('map_china'));
+//使用制定的配置项和数据显示图表
+                myChart.setOption(optionMap);
+
             }
             //alert("yesterday_data.confirmedCount"+yesterday_confirmed);
             //alert("json length"+json.length);
