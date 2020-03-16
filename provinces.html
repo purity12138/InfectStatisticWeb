@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疫情可视化全国总体</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
+    <link rel="stylesheet" href="./static/css/me.css">
+
+
+    <script type="text/javascript" src="./static/js/linecharts/export-data.js"></script>
+    <script type="text/javascript" src="./static/js/linecharts/exporting.js"></script>
+    <script type="text/javascript" src="./static/js/linecharts/highcharts.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+    <script type="text/javascript" src="./static/js/Date.prototype.js"></script>
+    <script type="text/javascript" src="./static/js/layer.js"></script>
+
+
+
+</head>
+
+<body>
+<!-- 导航 -->
+<nav class="ui	inverted	attached	segment m-padded-tb-mini ">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">疫情可视化</h2>
+            <a href="./index.html" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>疫情动态</a>
+            <a href="provinces.html" class=" m-item item m-mobile-hide"><i class="mini alarm icon"></i>省份详情</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>最新进展</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>防疫指南</a>
+            <a href="./news.html" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>新闻快讯</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                    <input type="text" placeholder="Search....">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<!--中间代码 -->
+<div class="m-padded-tb">
+
+    <div class="ui  container">
+        <div class="ui grid">
+            <!--
+            <ul class="statistics">
+                <li>
+                    <strong style="color: #f74c31;" dataContent="">0</strong>
+                    <span dataContent="">现有确诊</span>
+                </li>
+                <li>
+                    <strong style="color:#a25a4e;" dataContent="">0</strong>
+                    <span dataContent="">现有重症</span>
+                </li>
+                <li>
+                    <strong style="color: #f78207;" dataContent="">0</strong>
+                    <span dataContent="">现有疑似</span>
+                </li>
+                <li>
+                    <strong style="color: #ae212c;" dataContent="">0</strong>
+                    <span dataContent="">累计确诊</span>
+                </li>
+
+                <li>
+                    <strong style="color: #5d7092;" dataContent="">0</strong>
+                    <span dataContent="">累计死亡</span>
+                </li>
+                <li>
+                    <strong style="color: #28b7a3;" dataContent="">0</strong>
+                    <span dataContent="">累计治愈</span>
+                </li>
+
+            </ul>
+            -->
+            <div class="sixteen wide column">
+
+                <!--总量-->
+                <div class="ui top attached segment m-padded-tb-big">
+                    <!--date-->
+                    <div class="ui center aligned one column grid datasubtitle m-padded-tb-big" style="color: #999;">(截至2020-01-31 08:09)</div>
+                    <ul class="ui center aligned four column grid statistics">
+                        <li class="column">
+                            <strong class="ui header" style="color: #f74c31;" dataContent="">0</strong><br/><br/>
+                            <span class="ui black header" dataContent="">现有确诊</span>
+                            <div class="ui header" style="color: #f74c31;" dataContent="">0</div>
+                            <a class="ui black header">新增现有确诊</a>
+                        </li>
+                        <!--
+                        <li class="column">
+                            <strong class="ui header" style="color:#a25a4e;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">现有重症</span>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color: #f78207;" dataContent="">0</strong><br/>
+                            <span class="ui black header" dataContent="">现有疑似</span>
+                        </li>
+                        -->
+                        <li class="column">
+                            <strong class="ui header" style="color: #ae212c;" dataContent="">0</strong><br/><br/>
+                            <span class="ui black header" dataContent="">累计确诊</span>
+                            <div class="ui header" style="color: #ae212c;" dataContent="">0</div>
+                            <a class="ui black header">新增确诊</a>
+                        </li>
+
+                        <li class="column">
+                            <strong class="ui header" style="color: #5d7092;" dataContent="">0</strong><br/><br/>
+                            <span class="ui black header" dataContent="">累计死亡</span>
+                            <div class="ui header" style="color: #5d7092;" dataContent="">0</div>
+                            <a class="ui black header">新增死亡</a>
+                        </li>
+                        <li class="column">
+                            <strong class="ui header" style="color: #28b7a3;" dataContent="">0</strong><br/><br/>
+                            <span class="ui black header" dataContent="">累计治愈</span>
+                            <div class="ui header" style="color: #28b7a3;" dataContent="">0</div>
+                            <a class="ui black header">新增治愈</a>
+                        </li>
+                    </ul>
+                    <!--
+                    <div class="ui center aligned four column grid" >
+                        <div class="column">
+                            <h3 class="ui teal header">现有确诊</h3>
+                        </div>
+                        <div class="column">
+                            <h3 class="ui teal header">现有疑似</h3>
+                        </div>
+                        <div class="column">
+                            <h3 class="ui teal header">现已死亡</h3>
+                        </div>
+                        <div class="column">
+                            <h3 class="ui teal header">现已治愈</h3>
+                        </div>
+                    </div>
+                    <div class="ui center aligned four column grid">
+                        <div class="column">
+                            <h2 class="ui red header">47462</h2>
+                        </div>
+                        <div class="column">
+                            <h2 class="ui yellow header">47462</h2>
+                        </div>
+                        <div class="column">
+                            <h2 class="ui blue header">47462</h2>
+                        </div>
+                        <div class="column">
+                            <h2 class="ui green header">47462</h2>
+                        </div>
+                    </div>
+                    <div class="ui center aligned four column grid">
+                        <div class="column">
+                            较昨日<h5 class="ui teal header"></h5>
+                        </div>
+                        <div class="column">
+                            较昨日<h5 class="ui teal header"></h5>
+                        </div>
+                        <div class="column">
+                            较昨日<h5 class="ui teal header"></h5>
+                        </div>
+                        <div class="column">
+                            较昨日<h5 class="ui teal header"></h5>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <div id="main"></div>
+                <script type="text/javascript" src="./static/js/data.js"></script>
+                <!--地图-->
+                <!--
+                <div class="ui attached segment">
+                    <script type="text/javascript" src="./static/js/echarts.min.js"></script>
+                    <script type="text/javascript" src="./static/js/map/china.js"></script>
+                    <a id="back"></a>
+                    <div id="china-map"></div>
+                    <script type="text/javascript" src="./static/js/map/allCountry.js"></script>
+                </div>
+                -->
+                <div class="ui center aligned attached segment">
+                    <div class="center aligned column">
+                        <div class="ui borderless text five item menu ">
+
+                            <div class="ui teal simple dropdown  item">
+                                选择日期
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <a class="item" href="?tag=0313">2020年03月13日</a>
+                                    <a class="item" href="?tag=0312">2020年03月12日</a>
+                                    <a class="item" href="?tag=0311">2020年03月11日</a>
+                                    <a class="item" href="?tag=0310">2020年03月10日</a>
+                                    <a class="item" href="?tag=0309">2020年03月09日</a>
+                                    <a class="item" href="?tag=0308">2020年03月08日</a>
+                                    <a class="item" href="?tag=0307">2020年03月07日</a>
+                                    <a class="item" href="?tag=0306">2020年03月06日</a>
+                                    <a class="item" href="?tag=0305">2020年03月05日</a>
+                                    <a class="item" href="?tag=0304">2020年03月04日</a>
+                                    <a class="item" href="?tag=0303">2020年03月03日</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="ui attached segment">
+                        <script type="text/javascript" src="./static/js/echarts.min.js"></script>
+                        <script type="text/javascript" src="./static/js/map/china.js"></script>
+                        <a id="back"></a>
+                        <div id="china-map"></div>
+                        <script type="text/javascript" src="./static/js/map/hubei.js"></script>
+                    </div>
+                </div>
+
+                <!--
+                <script type="text/javascript" src="./static/js/jquery2.0.min.js"></script>
+                <script type="text/javascript" src="./static/js/common.js"></script>
+                <!--增长趋势图-->
+                <!--
+                <div class="chart" id="trend-chart" style="height: 25rem">
+
+                </div>
+                <hr/>
+                <!--增长量-->
+                <!--
+                <div class="chart" id="add-chart" style="height: 25rem">
+
+                </div>
+
+
+                <!--折线图-->
+                <div class="ui bottom attached segment">
+
+                    <div class="ui eight column grid">
+                        <div class="eight column">
+                            <div class="ui borderless text five item menu ">
+
+                                <div class="ui teal simple dropdown  item">
+                                    选择获取疫情日期Selection
+                                    <i class="dropdown icon"></i>
+                                    <div class="menu">
+                                        <a class="item" href="?tag=0313">2020年03月13日</a>
+                                        <a class="item" href="?tag=0312">2020年03月12日</a>
+                                        <a class="item" href="?tag=0311">2020年03月11日</a>
+                                        <a class="item" href="?tag=0310">2020年03月10日</a>
+                                        <a class="item" href="?tag=0309">2020年03月09日</a>
+                                        <a class="item" href="?tag=0308">2020年03月08日</a>
+                                        <a class="item" href="?tag=0307">2020年03月07日</a>
+                                        <a class="item" href="?tag=0306">2020年03月06日</a>
+                                        <a class="item" href="?tag=0305">2020年03月05日</a>
+                                        <a class="item" href="?tag=0304">2020年03月04日</a>
+                                        <a class="item" href="?tag=0303">2020年03月03日</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="ui form m-padded-tb-middle">
+                                <div class="fields">
+                                    <div class="field">
+                                        <div class="ui left icon input">
+                                            <i class="user icon"></i>
+                                            <input class='a1' type="text" name = 'current_confirmed' placeholder="现有确诊">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui left icon input">
+                                            <i class="user icon"></i>
+                                            <input class = 'a2' type="text" name = 'confirmed' placeholder="累计确诊">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui left icon input">
+                                            <i class="user icon"></i>
+                                            <input class = 'a3' type="text" name = 'current_cured' placeholder="累计治愈">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui left icon input">
+                                            <i class="user icon"></i>
+                                            <input class = 'a4' type="text" name = 'current_died' placeholder="累计死亡">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="lineChart-size">
+                            <div class="lineChart-display"></div>
+                            <div id="container" style="min-width: 400px; height: 500px; margin: 0 auto">
+                                <script type="text/javascript" src="static/js/linecharts/corenovirus_linechart_hubei.js"></script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ui center aligned four column grid">
+                        <div class="column">
+                            <a href="#" class="ui teal basic button">确诊</a>
+                        </div>
+                        <div class="column">
+                            <a href="#" class="ui teal basic button">疑似</a>
+                        </div>
+                        <div class="column">
+                            <a href="#" class="ui teal basic button">治愈</a>
+                        </div>
+                        <div class="column">
+                            <a href="#" class="ui teal basic button">死亡</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- 脚部 -->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <p>Copyright © 2020 - 2021 by 221701117、041700320</p>
+    </div>
+</footer>
+
+<!-- 拷贝 -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<!--
+<script type="text/javascript" src="./static/js/zui.js"></script>
+<script type="text/javascript" src="./static/js/chosen.min.js"></script>
+<script type="text/javascript" src="./static/js/echarts4.min.js"></script>
+-->
+<script type="text/javascript" src="./static/js/map/linechart.js"></script>
+</body>
+</html>

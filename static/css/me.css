@@ -1,0 +1,54 @@
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+.m-padded-tb-small {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+.m-padded-tb {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+.m-padded-tb-big {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+.m-padded-tb-large {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+.m-padded-tb-huge {
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+#china-map {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+}
+#map-china {
+    margin: auto;
+}
+.lineChart-size
+{
+    width: 1200px;
+    height: 500px;
+    margin: auto;
+}
+.highChart-display
+{
+    min-width: 310px;
+    height: 320px;
+    margin: 0 auto;
+}
+.photo-middle
+{
+    width: 80px !important;
+}
+body
+{
+    background:url("../images/bg.jpg") no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
